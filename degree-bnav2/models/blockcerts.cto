@@ -1,0 +1,76 @@
+/**
+ * A library of reusable types and concepts 
+ * based on the blockcerts standards: 
+ * https://github.com/blockchain-certificates/cert-schema
+ * blockcerts is an extension of Open Badges v2: 
+ * https://www.imsglobal.org/sites/default/files/Badges/OBv2p0/index.html
+ */
+ namespace composer.blockcerts
+
+abstract asset Certificate {
+  o String typeC default='Assertion'
+  o Badge badge
+  o Recipient recipient optional
+  o RecipientProfile recipientProfile optional
+  o String[] context default=["https://w3id.org/openbadges/v2",     "https://w3id.org/blockcerts/v2"]
+  o Boolean revoked default=0 optional
+} 
+
+/*
+include latter verification
+o Verification verification optional
+*/ 
+
+concept Badge {
+  o String IdB 
+  o String typeB default='BadgeClass'
+  o String nameB 
+  o String descriptionB
+  o String imageB optional
+  o String criteria optional
+  o Issuer issuer
+}
+
+concept Issuer {
+  o String IdI
+  o String typeI default='Profile'
+  o String nameI
+  o String urlI
+  o String emailI
+  o String descriptionI optional
+  o String imageI optional
+  o School school
+  o SignatureLines signatureLines
+}
+
+concept SignatureLines {
+  o String[] typeSL default=['SignatureLine', 'Extension']
+  o String nameSL 
+  o String imageSL 
+  o String jobtitle
+}
+
+concept School {
+  o String idSC
+  o String[] typeSC default=['School', 'Extension']
+  o String nameSC
+  o String urlSC
+  o String emailSC
+  o String imageSC 
+}
+
+concept Recipient {
+  o Boolean hashed default=0
+  o String emailR
+}
+
+concept RecipientProgile {
+  o String[] typeRP default=['RecipientProgile', 'Extension']
+  o String nameRP
+  o String publicKeyRP
+}
+
+/*
+concept Verification {
+ 
+}
