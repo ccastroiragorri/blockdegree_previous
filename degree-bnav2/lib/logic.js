@@ -19,13 +19,9 @@
 
 /**
  * Record a granted degree
- * @param  {org.degree.PersonalizeCert} personalizeCert - the record degree transaction
+ * @param  {org.degree.AddRoster} transaction - the transaction parameters
  * @transaction
  */
-function PersonalizeCert(personalizeCert) {
-    PersonalizeCert.titulo.owner = recordDegree.graduando;
-    return getAssetRegistry('org.degree.PersonalizeCert')
-      .then(function (assetRegistry) {
-        return assetRegistry.update(recordDegree.titulo);
-      });
-  }
+function AddRoster(transaction) {
+  
+}

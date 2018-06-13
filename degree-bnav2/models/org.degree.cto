@@ -44,14 +44,15 @@ asset CertificateTemplate identified by templateId extends Certificate {
 
 asset PersonalCertificate identified by certId {
   o String certId
-  --> CertificateTemplate gentemplateId
+  --> CertificateTemplate templateId
   o Recipient recipient 
   o RecipientProfile recipientProfile 
 }
 
 /*add person info as a string*/
 transaction AddRoster {
-  o PersonalCertificate[] persInfo
+  --> CertificateTemplate templateId
+  o String[] recipientsInfo
 }
 
 /*
@@ -62,12 +63,12 @@ event SampleEvent {
 }
 */
 concept Recipient {
-  o Boolean hashed default=false
+  o Boolean hashed default = false
   o String email
 }
 
 concept RecipientProfile {
-  o String typen default='RecipientProfile,Extension'
+  o String typen default = 'RecipientProfile,Extension'
   o String name
   o String publicKey
 }
