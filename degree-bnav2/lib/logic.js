@@ -22,6 +22,21 @@
  * @param  {org.degree.AddRoster} transaction - the transaction parameters
  * @transaction
  */
-function AddRoster(transaction) {
-  
+async function AddRoster(transaction) {
+  const personalCertificateRegistry = await getAssetRegistry('org.degree.PersonalCertificate');
+  const factory = getFactory();
+
+  // const recipientsInfo = JSON.parse(transaction.recipientsInfo);
+  const recipientsInfo = transaction.recipientsInfo;
+  let personalCertificates = [];
+
+  for (let i = 0; i < recipientsInfo.length; i++) {
+    const certificate = factory.newResource('org.degree', 'PersonalCertificate', recipientsInfo[i].certId);
+    certificate.templateId = transaction.templateId;
+    certificate.recipient = recipientsInfo[i].recipient;
+    certificate.recipientProfile = recipientsInfo[i].recipientProfile;
+    personalCertificates.push(certificate);
+  }
+
+  await personalCertificateRegistry.addAll(personalCertificates);
 }

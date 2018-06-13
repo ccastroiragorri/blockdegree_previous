@@ -52,7 +52,7 @@ asset PersonalCertificate identified by certId {
 /*add person info as a string*/
 transaction AddRoster {
   --> CertificateTemplate templateId
-  o String[] recipientsInfo
+  o RecipientInfo[] recipientsInfo
 }
 
 /*
@@ -62,6 +62,12 @@ event SampleEvent {
   o String newValue
 }
 */
+concept RecipientInfo {
+  o String certId
+  o Recipient recipient
+  o RecipientProfile recipientProfile
+}
+
 concept Recipient {
   o Boolean hashed default = false
   o String email
