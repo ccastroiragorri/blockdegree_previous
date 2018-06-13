@@ -42,16 +42,33 @@ asset CertificateTemplate identified by templateId extends Certificate {
   o String templateId
 }
 
-
-/*
-transaction SampleTransaction {
-  --> SampleAsset asset
-  o String newValue
+asset PersonalCertificate identified by certId {
+  o String certId
+  --> CertificateTemplate gentemplateId
+  o Recipient recipient 
+  o RecipientProfile recipientProfile 
 }
 
+/*add person info as a string*/
+transaction AddRoster {
+  o PersonalCertificate[] persInfo
+}
+
+/*
 event SampleEvent {
   --> SampleAsset asset
   o String oldValue
   o String newValue
 }
 */
+concept Recipient {
+  o Boolean hashed default=false
+  o String email
+}
+
+concept RecipientProfile {
+  o String typen default='RecipientProfile,Extension'
+  o String name
+  o String publicKey
+}
+

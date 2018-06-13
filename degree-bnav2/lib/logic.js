@@ -18,26 +18,14 @@
  */
 
 /**
- * Sample transaction
- * @param {org.degree.SampleTransaction} sampleTransaction
+ * Record a granted degree
+ * @param  {org.degree.PersonalizeCert} personalizeCert - the record degree transaction
  * @transaction
  */
-async function sampleTransaction(tx) {
-    // Save the old value of the asset.
-    const oldValue = tx.asset.value;
-
-    // Update the asset with the new value.
-    tx.asset.value = tx.newValue;
-
-    // Get the asset registry for the asset.
-    const assetRegistry = await getAssetRegistry('org.degree.SampleAsset');
-    // Update the asset in the asset registry.
-    await assetRegistry.update(tx.asset);
-
-    // Emit an event for the modified asset.
-    let event = getFactory().newEvent('org.degree', 'SampleEvent');
-    event.asset = tx.asset;
-    event.oldValue = oldValue;
-    event.newValue = tx.newValue;
-    emit(event);
-}
+function PersonalizeCert(personalizeCert) {
+    PersonalizeCert.titulo.owner = recordDegree.graduando;
+    return getAssetRegistry('org.degree.PersonalizeCert')
+      .then(function (assetRegistry) {
+        return assetRegistry.update(recordDegree.titulo);
+      });
+  }
