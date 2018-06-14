@@ -48,7 +48,7 @@ concept SignatureLines {
 }
 
 concept School {
-  o String id
+  o String Id
   o String typen default='School,Extension'
   o String name
   o String urln

@@ -19,39 +19,33 @@
 namespace org.degree
 
 import composer.blockcerts.Certificate
+import composer.base.Person
 
-participant AdminGlobal identified by email {
+participant Administrator identified by email extends Person {
   o String email
-  o String firstName
-  o String lastName
 }
 
-participant AdminLocal identified by email {
+participant UserExternal identified by email extends Person{
   o String email
-  o String firstName
-  o String lastName
-}
-
-participant UserExternal identified by email {
-  o String email
-  o String firstName
-  o String lastName
 }
 
 asset CertificateTemplate identified by templateId extends Certificate {
   o String templateId
+  --> Administrator Global
 }
 
 asset PersonalCertificate identified by certId {
   o String certId
-  --> CertificateTemplate gentemplateId
+  --> CertificateTemplate templateId
   o Recipient recipient 
-  o RecipientProfile recipientProfile 
+  o RecipientProfile recipientProfile
+  --> Administrator Local
 }
 
 /*add person info as a string*/
 transaction AddRoster {
-  o PersonalCertificate[] persInfo
+  --> CertificateTemplate templateId
+  o RecipientInfo[] recipientsInfo
 }
 
 /*
@@ -61,13 +55,19 @@ event SampleEvent {
   o String newValue
 }
 */
+concept RecipientInfo {
+  o String certId
+  o Recipient recipient
+  o RecipientProfile recipientProfile
+}
+
 concept Recipient {
-  o Boolean hashed default=false
+  o Boolean hashed default = false
   o String email
 }
 
 concept RecipientProfile {
-  o String typen default='RecipientProfile,Extension'
+  o String typen default = 'RecipientProfile,Extension'
   o String name
   o String publicKey
 }
