@@ -33,10 +33,7 @@ async function AddRoster(transaction) {
   for (let i = 0; i < recipientsInfo.length; i++) {
     const certificate = factory.newResource('org.degree', 'PersonalCertificate', recipientsInfo[i].certId);
     certificate.templateId = transaction.templateId;
-<<<<<<< HEAD
     certificate.Local = transaction.Local;
-=======
->>>>>>> ba4fd0f71bdf00f84a27847b5e18e3fc99657a2d
     certificate.recipient = recipientsInfo[i].recipient;
     certificate.recipientProfile = recipientsInfo[i].recipientProfile;
     personalCertificates.push(certificate);

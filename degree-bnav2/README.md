@@ -1,6 +1,6 @@
 # Blockcerts in Hyperledger
 
-This is an interactive registry for educational achivements that follow the [Blockcerts](https://www.blockcerts.org/guide/standard.html) certification schema
+This is an interactive registry for educational achivements that follow the [Blockcerts](https://www.blockcerts.org/guide/standard.html) certification schema and a similar process for granting certificates.
 
 This business network defines:
 
@@ -15,7 +15,7 @@ This business network defines:
 **Transaction**
 `AddRoster`
 
-`Members` participants are able to obtain a `Degree` assets that is linked to another `Program` asset. Initially the degree is created for the `Member` administrator and then granted to a `Member` student using the `RecordDegree` transaction. The asset `Program` must be created before any of the other assets 'Degree' con be created.
+Initially a `Certificate Template` is created by an `Administrator` and then granted to one student instantiating the `Personal Certificate`  or a list of student using the `AddRoster` transaction. 
 
 To test this Business Network Definition in the **Test** tab:
 
@@ -107,7 +107,7 @@ Instantiate an individual `Personal Certificate` for juan.uno@gmail.com:
   "Local": "resource:org.degree.Administrator#school@uoflife.com"
 }
 ```
-This transaction has registered generic degree base on a template `templateId:0001` to `juan.uno@gmail.com`.
+This transaction has registered generic degree base on a template `templateId:0001` to juan.uno@gmail.com.
 
 
 Submit a `AddRoster` transaction to personalize many certificates at the same time:
