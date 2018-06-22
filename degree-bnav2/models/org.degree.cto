@@ -25,7 +25,7 @@ participant Administrator identified by email extends Person {
   o String email
 }
 
-participant UserExternal identified by email extends Person{
+participant UserExternal identified by email extends Person {
   o String email
 }
 
@@ -37,14 +37,16 @@ asset CertificateTemplate identified by templateId extends Certificate {
 asset PersonalCertificate identified by certId {
   o String certId
   --> CertificateTemplate templateId
+  --> Administrator localAdministrator
   o Recipient recipient 
   o RecipientProfile recipientProfile
-  --> Administrator Local
+  o String hash
 }
 
 /*add person info as a string*/
 transaction AddRoster {
   --> CertificateTemplate templateId
+  --> Administrator localAdministrator
   o RecipientInfo[] recipientsInfo
 }
 
