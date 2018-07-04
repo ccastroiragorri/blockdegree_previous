@@ -148,5 +148,6 @@ Submit a `AddRoster` transaction to personalize many certificates at the same ti
   ]
 }
 ```
-This transaction has registered generic degrees base on a template `templateId:0001` to a group of students whose information is introduced as a collection of strings with the fields: id(email), name and publicKey for each student.
+This transaction has registered generic degrees base on a template `templateId:0001` to a group of students whose information is introduced as a collection of strings with the fields: id(email), name and publicKey for each student. Note that the transactions in the bna are only defined for writting onto the blockchain. Reading form the blockchain will be coded in the [frontend](https://github.com/ccastroiragorri/blockdegree-frontend) application.
+
 
