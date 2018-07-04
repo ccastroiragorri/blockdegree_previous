@@ -6,7 +6,6 @@ This business network defines:
 
 **Participant**
 `Administrator`
-`UserExternal`
 
 **Asset**
 `Certificate Template`
@@ -27,7 +26,7 @@ Create an global `Administrator` at the central registry office:
   "email": "registry@uoflife.com",
   "firstName": "Global",
   "lastName": "Admin",
-  "publicKey": "dgghg32565768326"
+  "publicKey": "REGISTRYadminKEYtest04072018"
 }
 ```
 Create an local `Administrator` at the school:
@@ -37,11 +36,9 @@ Create an local `Administrator` at the school:
   "email": "school@uoflife.com",
   "firstName": "Local",
   "lastName": "Admin",
-  "publicKey": "fsfhshgfj352626"
+  "publicKey": "SCHOOLadminKEYtest04072018"
 }
 ```
-For the current version we do not need to create an external user. 
-
 Create a `Certificate Template` asset:
 
 ```
@@ -58,14 +55,14 @@ Create a `Certificate Template` asset:
     "description": "some words in latin",
     "issuer": {
       "$class": "composer.blockcerts.Issuer",
-      "Id": "registry@uoflife.com",
+      "Id": "http://ccastroiragorri.github.io/IssuerIdTestR.json",
       "typen": "Profile",
       "name": "University of Life",
       "urln": "http://uoflife.com/",
       "email": "admin@uoflife.com",
       "school": {
         "$class": "composer.blockcerts.School",
-        "Id": "school@uoflife.com",
+        "Id": "http://ccastroiragorri.github.io/IssuerIdTestS.json",
         "typen": "School,Extension",
         "name": "School of Social Skills",
         "urln": "http://uoflife.com/identity/groups/",
@@ -93,6 +90,7 @@ Instantiate an individual `Personal Certificate` for juan.uno@gmail.com:
   "$class": "org.degree.PersonalCertificate",
   "certId": "1000",
   "templateId": "resource:org.degree.CertificateTemplate#0001",
+  "localAdministrator": "resource:org.degree.Administrator#school@uoflife.com",
   "recipient": {
     "$class": "org.degree.Recipient",
     "hashed": false,
@@ -116,7 +114,7 @@ Submit a `AddRoster` transaction to personalize many certificates at the same ti
 {
   "$class": "org.degree.AddRoster",
   "templateId": "resource:org.degree.CertificateTemplate#0001",
-  "Local": "resource:org.degree.Administrator#school@uoflife.com",
+  "localAdministrator": "resource:org.degree.Administrator#school@uoflife.com",
   "recipientsInfo": [{ 
     "certId": "1002", 
     "recipient": {
