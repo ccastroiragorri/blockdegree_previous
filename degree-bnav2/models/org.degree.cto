@@ -31,7 +31,7 @@ participant UserExternal identified by email extends Person {
 
 asset CertificateTemplate identified by templateId extends Certificate {
   o String templateId
-  --> Administrator Global
+  --> Administrator globalAdministrator
 }
 
 asset PersonalCertificate identified by certId {

@@ -19,7 +19,7 @@ o Verification verification optional
 */ 
 
 concept Badge {
-  o String Id
+  o String id
   o String typen default='BadgeClass'
   o String name 
   o String description
@@ -29,7 +29,7 @@ concept Badge {
 }
 
 concept Issuer {
-  o String Id
+  o String id
   o String typen default='Profile'
   o String name
   o String urln
@@ -48,7 +48,7 @@ concept SignatureLines {
 }
 
 concept School {
-  o String Id
+  o String id
   o String typen default='School,Extension'
   o String name
   o String urln
