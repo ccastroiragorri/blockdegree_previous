@@ -45,24 +45,24 @@ Create a `Certificate Template` asset:
 {
   "$class": "org.degree.CertificateTemplate",
   "templateId": "0001",
-  "Global": "resource:org.degree.Administrator#registry@uoflife.com",
+  "globalAdministrator": "resource:org.degree.Administrator#registry@uoflife.com",
   "typeC": "Assertion",
   "badge": {
     "$class": "composer.blockcerts.Badge",
-    "Id": "urn:uuid:82a4c9f2-3588-457b-80ea-da695571b8fc",
+    "id": "urn:uuid:82a4c9f2-3588-457b-80ea-da695571b8fc",
     "typen": "BadgeClass",
     "name": "Certificate of Accomplishment",
     "description": "some words in latin",
     "issuer": {
       "$class": "composer.blockcerts.Issuer",
-      "Id": "http://ccastroiragorri.github.io/IssuerIdTestR.json",
+      "id": "http://ccastroiragorri.github.io/IssuerIdTestR.json",
       "typen": "Profile",
       "name": "University of Life",
       "urln": "http://uoflife.com/",
       "email": "admin@uoflife.com",
       "school": {
         "$class": "composer.blockcerts.School",
-        "Id": "http://ccastroiragorri.github.io/IssuerIdTestS.json",
+        "id": "http://ccastroiragorri.github.io/IssuerIdTestS.json",
         "typen": "School,Extension",
         "name": "School of Social Skills",
         "urln": "http://uoflife.com/identity/groups/",
@@ -102,7 +102,6 @@ Instantiate an individual `Personal Certificate` for juan.uno@gmail.com:
     "name": "Juan Uno",
     "publicKey": "ecdsa-koblitz-pubkey:merttWiOty56H28YxwckLarrY3DsEpvFbe"
   },
-  "Local": "resource:org.degree.Administrator#school@uoflife.com"
 }
 ```
 This transaction has registered generic degree base on a template `templateId:0001` to juan.uno@gmail.com.
