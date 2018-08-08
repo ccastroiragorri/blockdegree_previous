@@ -19,14 +19,19 @@
 namespace org.degree
 
 import composer.blockcerts.Certificate
-import composer.base.Person
 
-participant Administrator identified by email extends Person {
+participant Administrator identified by email {
   o String email
+  o String firstName
+  o String lastName
+  o String publicKey
 }
 
-participant UserExternal identified by email extends Person {
+participant ExternalUser identified by email {
   o String email
+  o String firstName
+  o String lastName
+  o String publicKey
 }
 
 asset CertificateTemplate identified by templateId extends Certificate {

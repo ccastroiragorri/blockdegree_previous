@@ -1,7 +1,0 @@
- namespace composer.base
- 
- abstract participant Person {
-  o String firstName
-  o String lastName
-  o String publicKey
- }
