@@ -55,6 +55,22 @@ transaction AddRoster {
   o RecipientInfo[] recipientsInfo
 }
 
+transaction PersonalCertificateHistory {
+  o String certId
+}
+
+event PersonalCertificateHistoryResults {
+  o String[] results
+}
+
+transaction AdministratorHistory {
+  o String email
+}
+
+event AdministratorHistoryResults {
+  o String[] results
+}
+
 /*
 event SampleEvent {
   --> SampleAsset asset

@@ -48,6 +48,90 @@ async function AddRoster(transaction) {
   const result = await personalCertificateRegistry.addAll(personalCertificates);
 }
 
+/**
+* History of a personal certificate
+*@param {org.degree.PersonalCertificateHistory} transaction
+*@transaction
+*/
+async function getPersonalCertificateHistory(transaction) {
+  const certId = transaction.certId;
+  const nativeSupport = transaction.nativeSupport;
+
+  const assetRegistry = await getAssetRegistry('org.degree.PersonalCertificate');
+
+  const nativeKey = getNativeAPI().createCompositeKey('Asset:org.degree.PersonalCertificate', [certId]);
+  const iterator = await getNativeAPI().getHistoryForKey(nativeKey);
+  let results = [];
+  let res = { done: false };
+  while (!res.done) {
+      res = await iterator.next();
+
+      if (res && res.value && res.value.value) {
+          const value = res.value.value.toString('utf8');
+          const record = {
+              tx_id: res.value.tx_id,
+              value: value,
+              timestamp: res.value.timestamp
+          };          
+          results.push(JSON.stringify(record));
+      }
+      if (res && res.done) {
+          try {
+              iterator.close();
+          } catch (err) {
+          }
+      }
+  }
+
+  const event = getFactory().newEvent('org.degree', 'PersonalCertificateHistoryResults');
+  event.results = results;
+  emit(event);
+
+  // return results;
+}
+
+/**
+* History of an administrator
+*@param {org.degree.AdministratorHistory} transaction
+*@transaction
+*/
+async function getAdministratorHistory(transaction) {
+  const email = transaction.email;
+  const nativeSupport = transaction.nativeSupport;
+
+  const participantRegistry = await getParticipantRegistry('org.degree.Administrator');
+
+  const nativeKey = getNativeAPI().createCompositeKey('Participant:org.degree.Administrator', [email]);
+  const iterator = await getNativeAPI().getHistoryForKey(nativeKey);
+  let results = [];
+  let res = { done: false };
+  while (!res.done) {
+      res = await iterator.next();
+
+      if (res && res.value && res.value.value) {
+          const value = res.value.value.toString('utf8');
+          const record = {
+              tx_id: res.value.tx_id,
+              value: value,
+              timestamp: res.value.timestamp
+          };          
+          results.push(JSON.stringify(record));
+      }
+      if (res && res.done) {
+          try {
+              iterator.close();
+          } catch (err) {
+          }
+      }
+  }
+
+  const event = getFactory().newEvent('org.degree', 'AdministratorHistoryResults');
+  event.results = results;
+  emit(event);
+
+  // return results;
+}
+
 
 // helper functions
 
