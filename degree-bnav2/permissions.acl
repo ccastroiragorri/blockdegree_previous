@@ -56,23 +56,50 @@
 //     action: ALLOW
 // }
 
-// rule NetworkAdminSystem {
-//     description: "Grant business network administrators full access to system resources"
-//     participant: "org.hyperledger.composer.system.NetworkAdmin"
-//     operation: ALL
-//     resource: "org.hyperledger.composer.system.**"
-//     action: ALLOW
-// }
+rule NetworkAdminSystem {
+    description: "Grant business network administrators full access to system resources"
+    participant: "org.hyperledger.composer.system.NetworkAdmin"
+    operation: ALL
+    resource: "org.degree.*"
+    action: ALLOW
+}
 
 /**
  * Access control rules for tutorial-network
  */
+
 rule Default {
-    description: "Allow all participants access to all resources"
-    participant: "ANY"
+    description: "Grant business network administrators full access to system resources"
+    participant: "org.degree.Administrator"
     operation: ALL
     resource: "org.degree.*"
     action: ALLOW
+}
+
+rule EverybodyCanReadEverything {
+    description: "Grant business network administrators full access to system resources"
+    participant: "ANY"
+    operation: READ
+    resource: "org.degree.*"
+    action: ALLOW 
+}
+
+rule EverybodyCanCreateAdministratorHistory {
+    description: "All can created Administrator History"
+    participant: "ANY"
+    operation: CREATE
+    resource: "org.degree.AdministratorHistory"
+    action: ALLOW 
+
+}
+
+rule EverybodyCanCreatePersonalCertificateHistory {
+    description: "All can created PersonalCertificate History"
+    participant: "ANY"
+    operation: CREATE
+    resource: "org.degree.PersonalCertificateHistory"
+    action: ALLOW 
+
 }
 
 rule SystemACL {
